@@ -12,6 +12,13 @@ const Form = ({ turns, setTurns }) => {
 
   const [error, setError] = useState(false);
 
+  const generateID = () => {
+    const random = Math.random().toString(36).substr(2);
+    const date = Date.now().toString(36);
+
+    return random + date;
+  }
+
   const handleSubmit = e => {
     e.preventDefault();
 
@@ -26,14 +33,13 @@ const Form = ({ turns, setTurns }) => {
         number, 
         date, 
         hour, 
-        detail
+        detail,
+        id: generateID()
       }
 
       setTurns([...turns, objTurns]);
 
-
       //Reset
-
       setName('');
       setSurname('');
       setNumber('');
@@ -48,10 +54,10 @@ const Form = ({ turns, setTurns }) => {
     <div className="md:w-1/2 lg:w-2/5 mx-5">
       <h2 className="font-black text-purple-500 text-3xl text-center">Seguimiento Cliente</h2>
       <p className="text-lg mt-5 text-center mb-10">Añade Clientes y administralos</p>
-      {error}
+      
       <form 
         className="mb-10 bg-white shadow-md rounded py-10 px-5"
-        onClick={handleSubmit}
+        onSubmit={handleSubmit}
         >
 
         { error && <Error message="Debes completar todos los campos." /> }

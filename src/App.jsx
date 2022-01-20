@@ -15,7 +15,9 @@ function App() {
           turns={turns}
           setTurns={setTurns}
         />
-        <ClientList/>
+        <ClientList
+          turns={turns}
+        />
       </main>
     </div>
   )
