@@ -1,4 +1,4 @@
-const Turn = ({ turn }) => {
+const Turn = ({ turn, setTurn }) => {
     return (
         <div className="mx-5 mt-5 bg-white shadow-md px-5 py-10 rounded-xl">
             <p className="font-bold mb-3 text-gray-700 uppercase">Nombre:
@@ -24,6 +24,21 @@ const Turn = ({ turn }) => {
             <p className="font-bold mb-3 text-gray-700 uppercase">Descripción:
                 <span className="font-normal normal-case"> {turn.detail}</span> 
             </p>
+
+            <div className="flex sm:justify-between mt-10 lg:flex-row flex-col gap-4">
+                <button 
+                    type="button"
+                    className="py-2 px-10 bg-purple-500 hover:bg-purple-600 transition-all shadow-md text-white font-bold uppercase"
+                    onClick={() => setTurn(turn)}>
+                        Editar
+                </button>
+
+                <button 
+                    type="button"
+                    className="py-2 px-10 bg-red-500 hover:bg-red-600 transition-all shadow-md text-white font-bold uppercase">
+                        Borrar
+                    </button>
+            </div>
       </div>
     );
 }

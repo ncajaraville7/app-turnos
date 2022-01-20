@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Error from './Error';
 
-const Form = ({ turns, setTurns }) => {
+const Form = ({ turns, setTurns, turn, setTurn }) => {
 
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
@@ -11,6 +11,17 @@ const Form = ({ turns, setTurns }) => {
   const [detail, setDetail] = useState('');
 
   const [error, setError] = useState(false);
+
+  useEffect( () => {
+    if( Object.keys(turn).length > 0 ) {
+      setName(turn.name)
+      setSurname(turn.surname)
+      setNumber(turn.number)
+      setDate(turn.date)
+      setHour(turn.hour)
+      setDetail(turn.detail)
+    }
+  }, [turn])
 
   const generateID = () => {
     const random = Math.random().toString(36).substr(2);
@@ -33,11 +44,23 @@ const Form = ({ turns, setTurns }) => {
         number, 
         date, 
         hour, 
-        detail,
-        id: generateID()
+        detail
       }
 
-      setTurns([...turns, objTurns]);
+      
+      if(turn.id) {
+        //Edit turn
+        objTurns.id = turn.id
+        const updatedShift = turns.map( turnState => turnState.id === turn.id ? objTurns : turnState);
+        setTurns(updatedShift);
+        setTurn({}) //Clear state
+
+      } else { 
+        //Create turn
+        objTurns.id = generateID();
+        setTurns([...turns, objTurns]);
+      }
+
 
       //Reset
       setName('');
@@ -152,7 +175,7 @@ const Form = ({ turns, setTurns }) => {
         <input 
           type="submit"
           className="bg-purple-500 w-full p-3 text-white font-bold uppercase hover:bg-purple-600 cursor-pointer transition-all"
-          value="Confirmar Turno"
+          value={ turn.id ? 'Editar Turno' : 'Agregar Turno'}
         />
 
       </form>

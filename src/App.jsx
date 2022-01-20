@@ -6,6 +6,7 @@ import ClientList from "./components/ClientList"
 function App() {
 
   const [turns, setTurns] = useState([]);
+  const [turn, setTurn] = useState([]);
 
   return (
     <div className="container mx-auto mt-20">
@@ -14,9 +15,12 @@ function App() {
         <Form
           turns={turns}
           setTurns={setTurns}
+          turn={turn}
+          setTurn={setTurn}
         />
         <ClientList
           turns={turns}
+          setTurn={setTurn}
         />
       </main>
     </div>
