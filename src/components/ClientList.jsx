@@ -1,7 +1,7 @@
 import Turn from "./Turn";
 import draw from "../../public/img/undraw_Alert_re_j2op.png"
 
-const ClientList = ({ turns, setTurn }) => {  
+const ClientList = ({ turns, setTurn, deleteTurn }) => {  
 
   return (
     <div className="md:w-1/2 lg:w-3/5 h-screen md:overflow-y-scroll">
@@ -16,6 +16,7 @@ const ClientList = ({ turns, setTurn }) => {
                 key={turn.id} 
                 turn={turn}
                 setTurn={setTurn}
+                deleteTurn={deleteTurn}
               />
 
             ))}

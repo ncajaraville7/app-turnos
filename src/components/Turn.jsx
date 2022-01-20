@@ -1,4 +1,4 @@
-const Turn = ({ turn, setTurn }) => {
+const Turn = ({ turn, setTurn, deleteTurn }) => {
     return (
         <div className="mx-5 mt-5 bg-white shadow-md px-5 py-10 rounded-xl">
             <p className="font-bold mb-3 text-gray-700 uppercase">Nombre:
@@ -35,7 +35,9 @@ const Turn = ({ turn, setTurn }) => {
 
                 <button 
                     type="button"
-                    className="py-2 px-10 bg-red-500 hover:bg-red-600 transition-all shadow-md text-white font-bold uppercase">
+                    className="py-2 px-10 bg-red-500 hover:bg-red-600 transition-all shadow-md text-white font-bold uppercase"
+                    onClick={() => deleteTurn(turn.id)}
+                    >
                         Borrar
                     </button>
             </div>
